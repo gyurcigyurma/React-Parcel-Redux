@@ -1,0 +1,1 @@
+## Plain React project with Parcel
