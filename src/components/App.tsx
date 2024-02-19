@@ -1,35 +1,59 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { increment, decrement, RootState } from "./Counter";
+import Home from "../pages/Home";
 import "../index.css";
 
-function App() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+const About = React.lazy(() => import("../pages/About"));
+const Dashboard = React.lazy(() => import("../pages/Dashboard"));
 
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+
+const App = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="dashboard/*"
+          element={
+            <React.Suspense fallback={<>...</>}>
+              <Dashboard />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="about/*"
+          element={
+            <React.Suspense fallback={<>...</>}>
+              <About />
+            </React.Suspense>
+          }
+        />
+      </Route>
+    </Routes>
+  );
+};
+
+function Layout() {
   return (
     <div>
-      <button
-        aria-label="Increment value"
-        onClick={() => dispatch(increment())}
-        type="button"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 m-1"
-      >
-        Increment
-      </button>
-      <span className="w-11 inline-block border-2 border-gray-600">
-        {count}
-      </span>
-      <button
-        aria-label="Increment value"
-        onClick={() => dispatch(decrement())}
-        type="button"
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-base px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 m-1"
-      >
-        Decrement
-      </button>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/dashboard/">Dashboard</Link>
+          </li>
+          <li>
+            <Link to="/chart/">Chart</Link>
+          </li>
+          <li>
+            <Link to="/about">About</Link>
+          </li>
+        </ul>
+      </nav>
+      <Outlet />
     </div>
   );
 }
-
 export default App;
