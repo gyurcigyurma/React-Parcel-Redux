@@ -17,12 +17,12 @@ function Home() {
 
   return (
     <>
-      <h2>This is Home</h2>
       {status === "failed" && (
         <div className="font-bold text-red-600">
           Fetch error or bad resonse format
         </div>
       )}
+      {status === "loading" && <p>Loading table data...</p>}
       {status === "complete" && <Table tableData={comments.value} />}
     </>
   );

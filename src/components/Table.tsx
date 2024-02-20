@@ -1,8 +1,8 @@
 import React from "react";
 import { Table } from "ka-table";
-import "ka-table/style.css";
 import { DataType, EditingMode, SortingMode } from "ka-table/enums";
 import { Comment } from "../store/comments.slice";
+import "ka-table/style.css";
 
 interface myProp {
   tableData: Comment[];

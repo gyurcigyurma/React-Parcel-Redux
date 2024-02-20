@@ -1,9 +1,9 @@
 import React from "react";
-import Home from "../pages/Home";
+import Table from "../pages/Table.page";
 import "../index.css";
 
-const About = React.lazy(() => import("../pages/About"));
-const Dashboard = React.lazy(() => import("../pages/Dashboard"));
+const Chart = React.lazy(() => import("../pages/Chart.page"));
+const Help = React.lazy(() => import("../pages/Help.page"));
 
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 
@@ -11,20 +11,20 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route index element={<Home />} />
+        <Route index element={<Table />} />
         <Route
-          path="dashboard/*"
+          path="chart/*"
           element={
             <React.Suspense fallback={<>...</>}>
-              <Dashboard />
+              <Chart />
             </React.Suspense>
           }
         />
         <Route
-          path="about/*"
+          path="help/*"
           element={
             <React.Suspense fallback={<>...</>}>
-              <About />
+              <Help />
             </React.Suspense>
           }
         />
@@ -39,16 +39,13 @@ function Layout() {
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/dashboard/">Dashboard</Link>
+            <Link to="/">Table</Link>
           </li>
           <li>
             <Link to="/chart/">Chart</Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link to="/help/">Help</Link>
           </li>
         </ul>
       </nav>

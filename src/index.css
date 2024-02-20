@@ -5,6 +5,7 @@
 body {
   nav {
     padding: 1rem;
+    border-bottom: 2px solid darkblue;
 
     ul {
       display: flex;
@@ -14,15 +15,17 @@ body {
       padding: 0;
 
       a {
-        border: 2px solid darkblue;
+        color: white;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border: 2px solid #1976d2;
+        background-color: #1976d2;
         text-decoration: none;
         outline: 1px solid rgba(255, 255, 255, 0.5);
         padding: 5px 10px;
         border-radius: 5px;
 
         &:hover {
-          background-color: rgba(255, 255, 255, 0.5);
-          color: rgba(0, 0, 0, 0.5);
+          background-color: #3d95ed;
         }
       }
     }
